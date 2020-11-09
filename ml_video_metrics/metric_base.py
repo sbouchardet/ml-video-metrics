@@ -18,7 +18,7 @@ class Metric(ABC):
         self.predicted_frames = predicted_frames
 
     def __init_subclass__(cls, kind=None, *args, **kwargs):
-        if not inspect.isabstract(cls):
+        if kind is not None:
             cls.kind = kind
             METRICS_CLASSES[kind] = cls
         return super().__init_subclass__()

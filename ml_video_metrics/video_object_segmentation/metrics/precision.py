@@ -1,4 +1,4 @@
-from metrics_collector.segmentation.metrics.metric_base import MasksMetric
+from ml_video_metrics.video_object_segmentation.metrics.metric_base import MasksMetric
 
 
 class Precision(MasksMetric, kind="precision"):

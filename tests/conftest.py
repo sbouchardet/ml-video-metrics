@@ -29,6 +29,18 @@ def matrix_b():
 
 
 @pytest.fixture()
+def matrix_c():
+    return np.array(
+        [
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+        ]
+    )
+
+
+@pytest.fixture()
 def build_test_case_metrics_result():
     def builder(video_name, metric_name):
         return [

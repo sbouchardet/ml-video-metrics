@@ -1,7 +1,18 @@
+import pytest
 from unittest import mock
 from ml_video_metrics.models import convert_video_frame_metric_list_to_primitive
+from ml_video_metrics.video_object_segmentation.metrics import (
+    IntersectionOverUnion,
+    Precision,
+    Recall,
+)
 
-from ml_video_metrics.metric_base import Metric, merge_metrics_results
+from ml_video_metrics.metric_base import (
+    Metric,
+    merge_metrics_results,
+    METRICS_CLASSES,
+    get_metric_by_name,
+)
 
 
 class TestMetricBase(Metric, kind="test_metric"):
@@ -54,41 +65,28 @@ def test_merge_video_metrics_results_different_metrics(
         assert "metric_b" in metrics_result.metrics
 
 
-# def test_true_positive(matrix_a, matrix_b):
-#     true_mask_mocked = mock.Mock()
-#     predicted_mask_mocked = mock.Mock()
-
-#     result = TestMetricBase(true_mask_mocked, predicted_mask_mocked).get_true_positive(
-#         matrix_a, matrix_b
-#     )
-#     assert result == 4
+class TestMetricBaseRaw(Metric, kind="test_metric"):
+    pass
 
 
-# def test_true_negative(matrix_a, matrix_b):
-#     true_mask_mocked = mock.Mock()
-#     predicted_mask_mocked = mock.Mock()
+def test_metric_base_raises(matrix_a, matrix_b):
+    true_mask_mocked = mock.Mock()
+    predicted_mask_mocked = mock.Mock()
 
-#     result = TestMetricBase(true_mask_mocked, predicted_mask_mocked).get_true_negative(
-#         matrix_a, matrix_b
-#     )
-#     assert result == 2
-
-
-# def test_false_positive(matrix_a, matrix_b):
-#     true_mask_mocked = mock.Mock()
-#     predicted_mask_mocked = mock.Mock()
-
-#     result = TestMetricBase(true_mask_mocked, predicted_mask_mocked).get_false_positive(
-#         matrix_a, matrix_b
-#     )
-#     assert result == 5
+    with pytest.raises(NotImplementedError):
+        TestMetricBaseRaw(true_mask_mocked, predicted_mask_mocked).calculate(
+            matrix_a, matrix_b
+        )
 
 
-# def test_false_negative(matrix_a, matrix_b):
-#     true_mask_mocked = mock.Mock()
-#     predicted_mask_mocked = mock.Mock()
+def test_get_metric_by_name():
 
-#     result = TestMetricBase(true_mask_mocked, predicted_mask_mocked).get_false_negative(
-#         matrix_a, matrix_b
-#     )
-#     assert result == 5
+    assert get_metric_by_name("IoU") == IntersectionOverUnion
+    assert get_metric_by_name("precision") == Precision
+    assert get_metric_by_name("recall") == Recall
+
+
+def test_get_metric_by_name_raises_error():
+
+    with pytest.raises(ValueError):
+        get_metric_by_name("unexistend_metric")
