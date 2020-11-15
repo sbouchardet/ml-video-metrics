@@ -1,19 +1,17 @@
 import inspect
 from abc import ABC
+from os import environ, mkdir, path
 
 import numpy as np
 
 from ml_video_metrics.frame_loader import FrameLoader
 from ml_video_metrics.models import VideoFrameMetrics
-from os import environ, path, mkdir
-
 
 METRICS_CLASSES = dict()
 
 
 class Metric(ABC):
-    def __init__(self, true_frames: FrameLoader,
-                 predicted_frames: FrameLoader):
+    def __init__(self, true_frames: FrameLoader, predicted_frames: FrameLoader):
         self.true_frames = true_frames
         self.predicted_frames = predicted_frames
 
@@ -28,8 +26,7 @@ class Metric(ABC):
 
     def get_results(self, video_name, **kwargs):
         metric_records = list()
-        true_frames_matrices = self.true_frames.get_all_frames_matrix(
-            video_name)
+        true_frames_matrices = self.true_frames.get_all_frames_matrix(video_name)
         predicted_frames_matrices = self.predicted_frames.get_all_frames_matrix(
             video_name
         )
@@ -44,9 +41,7 @@ class Metric(ABC):
                 **kwargs,
             )
             metric_records.append(
-                VideoFrameMetrics(
-                    video_name, frame_id, {
-                        self.kind: metric_value})
+                VideoFrameMetrics(video_name, frame_id, {self.kind: metric_value})
             )
 
         return sorted(metric_records)

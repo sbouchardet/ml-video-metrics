@@ -5,8 +5,7 @@ from ml_video_metrics.video_object_segmentation.metrics.metric_base import Masks
 
 class IntersectionOverUnion(MasksMetric, kind="IoU"):
     def calculate(self, true_mask_matrix, predicted_mask_matrix, **kwargs):
-        intersection = self.get_true_positive(
-            true_mask_matrix, predicted_mask_matrix)
+        intersection = self.get_true_positive(true_mask_matrix, predicted_mask_matrix)
         union = self.calculate_union(true_mask_matrix, predicted_mask_matrix)
         return intersection / union if union > 0 else 0
 

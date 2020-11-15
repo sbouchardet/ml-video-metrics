@@ -1,20 +1,20 @@
 """This module contains the CLI functions relative to the `similarity` command.
 """
 
-import click
 import json
 from os import path
 
-from ml_video_metrics.cli import cli
+import click
 
+import ml_video_metrics.similarity.metrics
+from ml_video_metrics.cli import cli
 from ml_video_metrics.metric_base import (
     METRICS_CLASSES,
     get_metric_by_name,
     merge_metrics_results,
 )
-from ml_video_metrics.similarity import build_frame_loader
 from ml_video_metrics.models import convert_video_frame_metric_list_to_primitive
-import ml_video_metrics.similarity.metrics
+from ml_video_metrics.similarity import build_frame_loader
 
 
 def metrics_generator(metrics_names, true, predicted):
@@ -40,15 +40,11 @@ def similarity(kinds, true, predicted, video_name, output, save_extra):
 
     metrics = metrics_generator(kinds, true, predicted)
     metrics_results = [
-        metric.get_results(
-            video_name,
-            save_extra=save_extra,
-            output_extra=output)
+        metric.get_results(video_name, save_extra=save_extra, output_extra=output)
         for metric in metrics
     ]
     final_results = merge_metrics_results(*metrics_results)
-    primitive_result = convert_video_frame_metric_list_to_primitive(
-        final_results)
+    primitive_result = convert_video_frame_metric_list_to_primitive(final_results)
     print(f"{video_name} processed")
 
     print(f"Salving results")

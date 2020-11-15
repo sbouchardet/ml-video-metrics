@@ -1,5 +1,6 @@
-from ml_video_metrics.video_object_segmentation.mask import SegmentationMask
 from numpy import unique
+
+from ml_video_metrics.video_object_segmentation.mask import SegmentationMask
 
 
 def test_binary_mask():

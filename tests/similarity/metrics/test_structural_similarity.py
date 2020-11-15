@@ -35,16 +35,14 @@ def test_split_image_not_exact_shape(imgs_matrices):
 
 def test_split_images_in_windows_exact_shape(imgs_matrices):
     img_a, img_b = imgs_matrices
-    for window_a, window_b in _split_images_in_windows(
-            img_a, img_b, shape=(4, 4)):
+    for window_a, window_b in _split_images_in_windows(img_a, img_b, shape=(4, 4)):
         assert_array_equal(window_a, window_b)
         assert window_a.shape == window_b.shape == (4 * 4 * 3,)
 
 
 def test_split_images_in_windows_not_exact_shape(imgs_matrices):
     img_a, img_b = imgs_matrices
-    for window_a, window_b in _split_images_in_windows(
-            img_a, img_b, shape=(3, 3)):
+    for window_a, window_b in _split_images_in_windows(img_a, img_b, shape=(3, 3)):
         assert_array_equal(window_a, window_b)
         assert window_a.shape == window_b.shape
         assert window_a.shape in [(3 * 3 * 3,), (3 * 3,), (3,)]
@@ -81,8 +79,7 @@ def test_structure_diff_input(diff_windows):
 
 
 @mock.patch(
-    "ml_video_metrics.similarity.metrics.structural_similarity.WINDOW_SHAPE", (
-        4, 4)
+    "ml_video_metrics.similarity.metrics.structural_similarity.WINDOW_SHAPE", (4, 4)
 )
 def test_structural_similarity(diff_imgs_matrices):
     frames_a = mock.Mock()
@@ -94,8 +91,7 @@ def test_structural_similarity(diff_imgs_matrices):
 
 
 @mock.patch(
-    "ml_video_metrics.similarity.metrics.structural_similarity.WINDOW_SHAPE", (
-        4, 4)
+    "ml_video_metrics.similarity.metrics.structural_similarity.WINDOW_SHAPE", (4, 4)
 )
 def test_structural_similarity_equal_images(imgs_matrices):
     frames_a = mock.Mock()

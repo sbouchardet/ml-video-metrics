@@ -1,4 +1,5 @@
 from unittest import mock
+
 from ml_video_metrics.video_object_segmentation.metrics.recall import Recall
 
 

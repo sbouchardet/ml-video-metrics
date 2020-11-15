@@ -1,6 +1,5 @@
 import setuptools
 
-
 setuptools.setup(
     name="ml-video-metrics",  # Replace with your own username
     version="0.0.1",

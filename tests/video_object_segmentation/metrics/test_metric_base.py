@@ -1,7 +1,8 @@
 from unittest import mock
-import pytest
-from ml_video_metrics.models import convert_video_frame_metric_list_to_primitive
 
+import pytest
+
+from ml_video_metrics.models import convert_video_frame_metric_list_to_primitive
 from ml_video_metrics.video_object_segmentation.metrics.metric_base import MasksMetric
 
 

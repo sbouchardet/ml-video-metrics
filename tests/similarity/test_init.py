@@ -1,4 +1,5 @@
 from unittest import mock
+
 from ml_video_metrics.similarity import build_frame_loader
 
 

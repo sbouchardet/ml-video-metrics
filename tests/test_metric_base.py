@@ -1,17 +1,18 @@
-import pytest
 from unittest import mock
+
+import pytest
+
+from ml_video_metrics.metric_base import (
+    METRICS_CLASSES,
+    Metric,
+    get_metric_by_name,
+    merge_metrics_results,
+)
 from ml_video_metrics.models import convert_video_frame_metric_list_to_primitive
 from ml_video_metrics.video_object_segmentation.metrics import (
     IntersectionOverUnion,
     Precision,
     Recall,
-)
-
-from ml_video_metrics.metric_base import (
-    Metric,
-    merge_metrics_results,
-    METRICS_CLASSES,
-    get_metric_by_name,
 )
 
 
@@ -40,19 +41,16 @@ def test_get_results(build_test_case_metrics_result):
         "00002": 0.1,
     }
 
-    mocked_metric_base = TestMetricBase(
-        true_mask_mocked, predicted_mask_mocked)
+    mocked_metric_base = TestMetricBase(true_mask_mocked, predicted_mask_mocked)
     result = mocked_metric_base.get_results("test_video")
-    expected_result = build_test_case_metrics_result(
-        "test_video", "test_metric")
+    expected_result = build_test_case_metrics_result("test_video", "test_metric")
 
     assert convert_video_frame_metric_list_to_primitive(
         result
     ) == convert_video_frame_metric_list_to_primitive(expected_result)
 
 
-def test_merge_video_metrics_results_different_metrics(
-        build_test_case_metrics_result):
+def test_merge_video_metrics_results_different_metrics(build_test_case_metrics_result):
     video_a = build_test_case_metrics_result("video_a", "metric_a")
 
     video_b = build_test_case_metrics_result("video_a", "metric_b")

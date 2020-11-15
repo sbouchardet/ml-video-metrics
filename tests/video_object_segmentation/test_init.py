@@ -1,4 +1,5 @@
 from unittest import mock
+
 from ml_video_metrics.video_object_segmentation import build_segmentation_masks
 
 

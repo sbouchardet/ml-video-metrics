@@ -12,11 +12,7 @@ def test_video_frame_metrics_comparison():
 
 def test_video_frame_metrics_conversion_to_dict():
     frame = VideoFrameMetrics("video_a", "0", {"metric_a": 1})
-    expected = {
-        "video_name": "video_a",
-        "frame_id": "0",
-        "metrics": {
-            "metric_a": 1}}
+    expected = {"video_name": "video_a", "frame_id": "0", "metrics": {"metric_a": 1}}
     assert dict(frame) == expected
 
 
@@ -29,7 +25,6 @@ def test_convert_video_frame_metric_list_to_primitive():
         {"video_name": "video_a", "frame_id": "2", "metrics": {"metric_a": 1}},
     ]
     assert (
-        convert_video_frame_metric_list_to_primitive(
-            [first_frame, second_frame])
+        convert_video_frame_metric_list_to_primitive([first_frame, second_frame])
         == expected
     )

@@ -28,8 +28,7 @@ class FrameLoader:
     def get_frames_folder(self, video_name):
         video_frames_path = path.join(self.videos_folder, video_name)
         if not path.exists(video_frames_path):
-            raise FileNotFoundError(
-                f"The path {video_frames_path} does not exists")
+            raise FileNotFoundError(f"The path {video_frames_path} does not exists")
 
         return video_frames_path
 

@@ -1,4 +1,5 @@
 import pytest
+
 from ml_video_metrics.frame_loader import FrameLoader
 
 

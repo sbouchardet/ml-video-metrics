@@ -5,4 +5,3 @@ test:
 .PHONY:lint
 lint:
 	black ./
-	autopep8 --in-place --aggressive -r ./

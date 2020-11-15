@@ -1,10 +1,10 @@
 from math import ceil
-from os import path
+from os import environ, mkdir, path
 
-from numpy import append, array, cov, mean, sum, uint8, var
 from matplotlib import image
+from numpy import append, array, cov, mean, sum, uint8, var
+
 from ml_video_metrics.metric_base import Metric
-from os import environ, path, mkdir
 
 L = 255
 K1 = 0.01
@@ -40,14 +40,12 @@ class StructuralSimilarity(Metric, kind="structural-similarity"):
             map_h = ceil(img_h / WINDOW_SHAPE[0])
             map_w = ceil(image_w / WINDOW_SHAPE[1])
             self.save_similarity_map(
-                ssim_map.reshape(
-                    (map_h, map_w)), frame_id, video_name, output_extra
+                ssim_map.reshape((map_h, map_w)), frame_id, video_name, output_extra
             )
 
         return mean(ssim_map)
 
-    def save_similarity_map(self, sim_map, frame_id,
-                            video_name, output_folder):
+    def save_similarity_map(self, sim_map, frame_id, video_name, output_folder):
         file_name = f"sim_map_{frame_id}.png"
         if not path.exists(output_folder):
             mkdir(output_folder)

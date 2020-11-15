@@ -1,4 +1,4 @@
-from ml_video_metrics.cli import cli, video_object_segmentation, similarity
+from ml_video_metrics.cli import cli, similarity, video_object_segmentation
 
 
 def main():
