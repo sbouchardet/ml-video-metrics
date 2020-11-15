@@ -13,16 +13,17 @@ C1 = (K1 * L) ** 2
 C2 = (K2 * L) ** 2
 C3 = C2 / 2
 WINDOW_SHAPE = (2, 2)
-SAVE_SIMILARITY_MAP = True
 
 
-class StructuralSimilarity(Metric, kind="structural_similarity"):
+class StructuralSimilarity(Metric, kind="structural-similarity"):
     def calculate(
         self,
         true_frames_matrix,
         predicted_frames_matrix,
         frame_id=None,
         video_name=None,
+        save_extra=True,
+        output_extra="",
     ):
         true_and_predicted_frames_windows = _split_images_in_windows(
             true_frames_matrix, predicted_frames_matrix, shape=WINDOW_SHAPE
@@ -34,12 +35,13 @@ class StructuralSimilarity(Metric, kind="structural_similarity"):
             s = _structure(window_true, window_predicted)
             ssim_map = append(ssim_map, l * c * s)
 
-        if SAVE_SIMILARITY_MAP:
+        if save_extra:
             img_h, image_w = true_frames_matrix.shape[:2]
             map_h = ceil(img_h / WINDOW_SHAPE[0])
             map_w = ceil(image_w / WINDOW_SHAPE[1])
             self.save_similarity_map(
-                ssim_map.reshape((map_h, map_w)), frame_id, video_name
+                ssim_map.reshape(
+                    (map_h, map_w)), frame_id, video_name, output_extra
             )
 
         return mean(ssim_map)
@@ -47,10 +49,9 @@ class StructuralSimilarity(Metric, kind="structural_similarity"):
     def save_similarity_map(self, sim_map, frame_id,
                             video_name, output_folder):
         file_name = f"sim_map_{frame_id}.png"
-        folder = path.join(output_folder, video_name)
-        if not path.exists(folder):
-            mkdir(folder)
-        full_path_file = path.join(folder, file_name)
+        if not path.exists(output_folder):
+            mkdir(output_folder)
+        full_path_file = path.join(output_folder, file_name)
         image.imsave(
             full_path_file, sim_map, vmin=0, vmax=1, cmap="Greys", format="png"
         )

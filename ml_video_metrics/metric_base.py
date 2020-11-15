@@ -26,7 +26,7 @@ class Metric(ABC):
     def calculate(self, true_frames_matrix, predicted_frames_matrix, **kwargs):
         raise NotImplementedError()
 
-    def get_results(self, video_name):
+    def get_results(self, video_name, **kwargs):
         metric_records = list()
         true_frames_matrices = self.true_frames.get_all_frames_matrix(
             video_name)
@@ -41,6 +41,7 @@ class Metric(ABC):
                 predicted_frames_matrix,
                 frame_id=frame_id,
                 video_name=video_name,
+                **kwargs,
             )
             metric_records.append(
                 VideoFrameMetrics(
