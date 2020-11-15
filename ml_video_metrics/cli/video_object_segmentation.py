@@ -1,3 +1,5 @@
+"""This module contains the CLI functions relative to the `video-object-segmentation` command.
+"""
 import click
 import json
 

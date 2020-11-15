@@ -1,3 +1,6 @@
+"""This module contains the CLI functions relative to the `similarity` command.
+"""
+
 import click
 import json
 from os import path

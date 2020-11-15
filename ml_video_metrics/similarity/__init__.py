@@ -1,3 +1,6 @@
+"""This module contains the structures relative to the similarity metrics calculation
+"""
+
 from ml_video_metrics.frame_loader import FrameLoader
 
 

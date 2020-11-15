@@ -84,15 +84,11 @@ def test_structure_diff_input(diff_windows):
     "ml_video_metrics.similarity.metrics.structural_similarity.WINDOW_SHAPE", (
         4, 4)
 )
-@mock.patch(
-    "ml_video_metrics.similarity.metrics.structural_similarity.SAVE_SIMILARITY_MAP",
-    False,
-)
 def test_structural_similarity(diff_imgs_matrices):
     frames_a = mock.Mock()
     frames_b = mock.Mock()
     ssim_total = StructuralSimilarity(frames_a, frames_b).calculate(
-        diff_imgs_matrices[0], diff_imgs_matrices[1]
+        diff_imgs_matrices[0], diff_imgs_matrices[1], save_extra=False
     )
     assert ssim_total == 0.0005263532311913696
 
@@ -101,14 +97,10 @@ def test_structural_similarity(diff_imgs_matrices):
     "ml_video_metrics.similarity.metrics.structural_similarity.WINDOW_SHAPE", (
         4, 4)
 )
-@mock.patch(
-    "ml_video_metrics.similarity.metrics.structural_similarity.SAVE_SIMILARITY_MAP",
-    False,
-)
 def test_structural_similarity_equal_images(imgs_matrices):
     frames_a = mock.Mock()
     frames_b = mock.Mock()
     ssim_total = StructuralSimilarity(frames_a, frames_b).calculate(
-        imgs_matrices[0], imgs_matrices[1]
+        imgs_matrices[0], imgs_matrices[1], save_extra=False
     )
     assert ssim_total == 1.0
