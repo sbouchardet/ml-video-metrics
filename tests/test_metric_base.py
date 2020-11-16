@@ -16,13 +16,13 @@ from ml_video_metrics.video_object_segmentation.metrics import (
 )
 
 
-class TestMetricBase(Metric, kind="test_metric"):
+class MetricBaseTest(Metric, kind="test_metric"):
     def calculate(self, true_mask_matrix, predicted_mask_matrix, **kwargs):
         return 0.42
 
 
 def test_kind_is_set():
-    assert TestMetricBase.kind == "test_metric"
+    assert MetricBaseTest.kind == "test_metric"
 
 
 def test_get_results(build_test_case_metrics_result):
@@ -41,7 +41,7 @@ def test_get_results(build_test_case_metrics_result):
         "00002": 0.1,
     }
 
-    mocked_metric_base = TestMetricBase(true_mask_mocked, predicted_mask_mocked)
+    mocked_metric_base = MetricBaseTest(true_mask_mocked, predicted_mask_mocked)
     result = mocked_metric_base.get_results("test_video")
     expected_result = build_test_case_metrics_result("test_video", "test_metric")
 
@@ -63,7 +63,7 @@ def test_merge_video_metrics_results_different_metrics(build_test_case_metrics_r
         assert "metric_b" in metrics_result.metrics
 
 
-class TestMetricBaseRaw(Metric, kind="test_metric"):
+class MetricBaseTestRaw(Metric, kind="test_metric"):
     pass
 
 
@@ -72,7 +72,7 @@ def test_metric_base_raises(matrix_a, matrix_b):
     predicted_mask_mocked = mock.Mock()
 
     with pytest.raises(NotImplementedError):
-        TestMetricBaseRaw(true_mask_mocked, predicted_mask_mocked).calculate(
+        MetricBaseTestRaw(true_mask_mocked, predicted_mask_mocked).calculate(
             matrix_a, matrix_b
         )
 

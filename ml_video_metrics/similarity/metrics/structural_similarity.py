@@ -12,7 +12,7 @@ K2 = 0.03
 C1 = (K1 * L) ** 2
 C2 = (K2 * L) ** 2
 C3 = C2 / 2
-WINDOW_SHAPE = (2, 2)
+WINDOW_SHAPE = (8, 8)
 
 
 class StructuralSimilarity(Metric, kind="structural-similarity"):
@@ -43,7 +43,7 @@ class StructuralSimilarity(Metric, kind="structural-similarity"):
                 ssim_map.reshape((map_h, map_w)), frame_id, video_name, output_extra
             )
 
-        return mean(ssim_map)
+        return ssim_map.tolist()
 
     def save_similarity_map(self, sim_map, frame_id, video_name, output_folder):
         file_name = f"sim_map_{frame_id}.png"
