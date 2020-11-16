@@ -11,7 +11,6 @@ from ml_video_metrics.metric_base import get_metric_by_name
 from ml_video_metrics.similarity import build_frame_loader
 
 
-
 class CLISimilarity(CLIBase):
     def metrics_builder(self, kinds, true, predicted):
         true_seg_mask, predicted_seg_mask = build_frame_loader(true, predicted)

@@ -6,9 +6,11 @@ from os import path
 from .similarity import CLISimilarity
 from .video_object_segmentation import CLIVideoObjectSegmentation
 
+
 @click.group()
 def cli():
     pass
+
 
 @cli.command("similarity")
 @click.option(
@@ -25,8 +27,15 @@ def cli():
 @click.option("--save-extra/--no-save-extra", default=True)
 def similarity(kinds, true, predicted, video_name, output, save_extra):
     output_file = path.join(output, f"{video_name}.json")
-    CLISimilarity().process_metric(kinds, true, predicted, video_name, output_file, save_extra=save_extra, output_extra=output)
-
+    CLISimilarity().process_metric(
+        kinds,
+        true,
+        predicted,
+        video_name,
+        output_file,
+        save_extra=save_extra,
+        output_extra=output,
+    )
 
 
 @cli.command("video-object-segmentation")
@@ -42,4 +51,6 @@ def similarity(kinds, true, predicted, video_name, output, save_extra):
 @click.option("--video-name", "-v", help="Video name")
 @click.option("--output", "-o", default="out.txt", help="Output file")
 def vos(kinds, true, predicted, video_name, output):
-    CLIVideoObjectSegmentation().process_metric(kinds, true, predicted, video_name, output)
+    CLIVideoObjectSegmentation().process_metric(
+        kinds, true, predicted, video_name, output
+    )

@@ -6,7 +6,6 @@ from ml_video_metrics.cli.cli_base import CLIBase
 from ml_video_metrics.metric_base import get_metric_by_name
 
 
-
 class CLIVideoObjectSegmentation(CLIBase):
     def metrics_builder(self, kinds, true, predicted):
         true_seg_mask, predicted_seg_mask = build_segmentation_masks(true, predicted)

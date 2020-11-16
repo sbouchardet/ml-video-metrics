@@ -7,7 +7,7 @@ from snapshottest import Snapshot
 
 snapshots = Snapshot()
 
-snapshots['test_structural_similarity 1'] = [
+snapshots["test_structural_similarity 1"] = [
     0.000655149133073187,
     0.000704094739298068,
     0.000739796907895858,
@@ -23,5 +23,5 @@ snapshots['test_structural_similarity 1'] = [
     0.00033157643953793007,
     0.0003261408709278128,
     0.00032087139190941526,
-    0.00031576099605374214
+    0.00031576099605374214,
 ]

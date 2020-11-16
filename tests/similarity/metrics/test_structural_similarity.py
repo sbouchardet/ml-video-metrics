@@ -99,4 +99,4 @@ def test_structural_similarity_equal_images(imgs_matrices):
     ssim_total = StructuralSimilarity(frames_a, frames_b).calculate(
         imgs_matrices[0], imgs_matrices[1], save_extra=False
     )
-    assert ssim_total == [1.0]*16
+    assert ssim_total == [1.0] * 16

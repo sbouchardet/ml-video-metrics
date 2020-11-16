@@ -44,9 +44,9 @@ def matrix_c():
 def build_test_case_metrics_result():
     def builder(video_name, metric_name):
         return [
-            VideoFrameMetrics(video_name, "00001", {metric_name: 0.42}),
-            VideoFrameMetrics(video_name, "00002", {metric_name: 0.42}),
-            VideoFrameMetrics(video_name, "00003", {metric_name: 0.42}),
+            VideoFrameMetrics(video_name, "00001", dict({metric_name: 0.42})),
+            VideoFrameMetrics(video_name, "00002", dict({metric_name: 0.42})),
+            VideoFrameMetrics(video_name, "00003", dict({metric_name: 0.42})),
         ]
 
     return builder
