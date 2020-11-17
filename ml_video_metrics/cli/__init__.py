@@ -3,8 +3,8 @@
 import click
 from os import path
 
-from .similarity import CLISimilarity
-from .video_object_segmentation import CLIVideoObjectSegmentation
+from .cli_similarity import CLISimilarity
+from .cli_video_object_segmentation import CLIVideoObjectSegmentation
 
 
 @click.group()
