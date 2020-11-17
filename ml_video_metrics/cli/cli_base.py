@@ -13,6 +13,7 @@ class CLIBase(ABC):
     def process_metric(self, kinds, true, predicted, video_name, output, **kwargs):
 
         metrics = self.metrics_builder(kinds, true, predicted)
+        metrics_results = list()
         with click.progressbar(metrics) as metrics_bar:
             metrics_results = [
                 metric.get_results(video_name, **kwargs) for metric in metrics_bar

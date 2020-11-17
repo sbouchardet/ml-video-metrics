@@ -43,10 +43,11 @@ def matrix_c():
 @pytest.fixture()
 def build_test_case_metrics_result():
     def builder(video_name, metric_name):
+        metric_dict = dict()
         return [
-            VideoFrameMetrics(video_name, "00001", dict({metric_name: 0.42})),
-            VideoFrameMetrics(video_name, "00002", dict({metric_name: 0.42})),
-            VideoFrameMetrics(video_name, "00003", dict({metric_name: 0.42})),
+            VideoFrameMetrics(video_name, "00001", metrics={metric_name: 0.42}),
+            VideoFrameMetrics(video_name, "00002", metrics={metric_name: 0.42}),
+            VideoFrameMetrics(video_name, "00003", metrics={metric_name: 0.42}),
         ]
 
     return builder

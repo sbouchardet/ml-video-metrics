@@ -5,9 +5,9 @@ class VideoFrameMetrics:
 
     def __init__(self, video_name, frame_id, metrics=dict()):
 
-        self.video_name = video_name
-        self.frame_id = frame_id
-        self.metrics = metrics
+        self._video_name = video_name
+        self._frame_id = frame_id
+        self._metrics = metrics
         self.__dict = {
             self.video_name_key: video_name,
             self.frame_id_key: frame_id,
@@ -15,7 +15,7 @@ class VideoFrameMetrics:
         }
 
     def __lt__(self, other):
-        return self.frame_id < other.frame_id
+        return self._frame_id < other._frame_id
 
     def keys(self):
         return self.__dict.keys()

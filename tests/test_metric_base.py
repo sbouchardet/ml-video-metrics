@@ -59,8 +59,8 @@ def test_merge_video_metrics_results_different_metrics(build_test_case_metrics_r
     assert len(result) == 3
 
     for metrics_result in result:
-        assert "metric_a" in metrics_result.metrics
-        assert "metric_b" in metrics_result.metrics
+        assert "metric_a" in metrics_result._metrics
+        assert "metric_b" in metrics_result._metrics
 
 
 class MetricBaseTestRaw(Metric, kind="test_metric"):

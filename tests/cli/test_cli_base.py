@@ -39,4 +39,13 @@ def test_process_metric(
         metric_a.get_results.assert_called_once_with("fake_video")
         metric_b.get_results.assert_called_once_with("fake_video")
         mocked_file.assert_called_with("path/to/output", "w")
-        print(mock_json.dump.call_args_list)
+        mock_json.dump.assert_called_with(
+            [
+                {
+                    "video_name": "fake_video",
+                    "frame_id": "0001",
+                    "metrics": {"fake_kind": 1.0},
+                }
+            ],
+            mocked_file.return_value,
+        )

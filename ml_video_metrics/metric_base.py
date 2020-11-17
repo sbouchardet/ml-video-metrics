@@ -52,15 +52,15 @@ def merge_metrics_results(*args):
     final_result = dict()
     for metric_result in args:
         for video_frame_metric in metric_result:
-            frame_id = video_frame_metric.frame_id
-            video_name = video_frame_metric.video_name
+            frame_id = video_frame_metric._frame_id
+            video_name = video_frame_metric._video_name
 
             final_result.setdefault(
                 frame_id,
-                VideoFrameMetrics(video_name, frame_id),
+                VideoFrameMetrics(video_name, frame_id, metrics=dict()),
             )
 
-            final_result[frame_id].metrics.update(video_frame_metric.metrics)
+            final_result[frame_id]._metrics.update(video_frame_metric._metrics)
 
     return sorted(final_result.values())
 
