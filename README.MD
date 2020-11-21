@@ -95,4 +95,4 @@ This command parameters required are:
 
 This command optional parametes are:
 - `output`: This parameter expects a output folder. In this metric, since we can have a map of similarity of the image (that is an image file per frame), the results will be persested in a folder. The default value is `./out`.
-- `save-extra`: If this flac is activate, this command will save the similarity maps in the output folder. Otherwise, the output will be only a json inside the folder with the metrics values.
+- `save-extra` or `no-save-extra`: If this flag is activate, this command will save the similarity maps in the output folder. Otherwise, the output will be only a json inside the folder with the metrics values. The default value is `save-extra`.
