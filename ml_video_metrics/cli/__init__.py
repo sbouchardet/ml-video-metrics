@@ -25,7 +25,7 @@ def cli():
 @click.option(
     "--video-name",
     "-v",
-    help="Video name (file looked up inside the paths --true and --predicted)",
+    help="Video name (the folder looked up inside the paths --true and --predicted)",
 )
 @click.option("--output", "-o", default="./out", help="Output folder")
 @click.option("--save-extra/--no-save-extra", default=True)
@@ -55,7 +55,7 @@ def similarity(kinds, true, predicted, video_name, output, save_extra):
 @click.option(
     "--video-name",
     "-v",
-    help="Video name (file looked up inside the paths --true and --predicted)",
+    help="Video name (the folder looked up inside the paths --true and --predicted)",
 )
 @click.option("--output", "-o", default="out.txt", help="Output file")
 def vos(kinds, true, predicted, video_name, output):
