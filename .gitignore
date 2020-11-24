@@ -3,3 +3,4 @@ htmlcov
 .vscode
 *.pyc
 *.egg-info
+.ipynb_checkpoints
