@@ -1,5 +1,3 @@
-"""This module contains the CLI functions relative to the `similarity` command.
-"""
 import json
 from os import path
 
@@ -11,6 +9,8 @@ from ml_video_metrics.similarity import build_frame_loader
 
 
 class CLISimilarity(CLIBase):
+    """This class contains the CLI methods relative to the `vsimilarity` command"""
+
     def metrics_builder(self, kinds, true, predicted):
         true_seg_mask, predicted_seg_mask = build_frame_loader(true, predicted)
         for kind in kinds:

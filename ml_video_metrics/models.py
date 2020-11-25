@@ -1,4 +1,6 @@
 class VideoFrameMetrics:
+    """Class that represents the metrics of a frame in a video"""
+
     video_name_key = "video_name"
     frame_id_key = "frame_id"
     metrics_key = "metrics"
@@ -25,6 +27,14 @@ class VideoFrameMetrics:
 
 
 def convert_video_frame_metric_list_to_primitive(video_frame_metric_list):
+    """Convert a list of VideoFrameMetrics to a list of dicts.
+
+    Args:
+        video_frame_metric_list (list[VideoFrameMetrics]): List of VideoFrameMetrics to be convertes
+
+    Returns:
+        list[dict]: List of dicts that is a representation of the input list
+    """
     return [
         dict(video_frame_metrics) for video_frame_metrics in video_frame_metric_list
     ]

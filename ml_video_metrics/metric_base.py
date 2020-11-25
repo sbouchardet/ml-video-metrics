@@ -48,6 +48,11 @@ class Metric(ABC):
 
 
 def merge_metrics_results(*args):
+    """Merge lists of VideoFrameMetrics that are results of different metrics
+
+    Returns:
+        list[VideoFrameMetrics]: merged inputs
+    """
 
     final_result = dict()
     for metric_result in args:
@@ -66,6 +71,17 @@ def merge_metrics_results(*args):
 
 
 def get_metric_by_name(name):
+    """This function builds a Metric class based on a reference name
+
+    Args:
+        name (str): metric kind
+
+    Raises:
+        ValueError: Raises this error if the `name` is not found amoung the metrics.
+
+    Returns:
+        Metric: Object of Metric kind
+    """
     metric_class = METRICS_CLASSES.get(name)
     if not metric_class:
         raise ValueError(

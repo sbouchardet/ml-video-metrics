@@ -7,6 +7,8 @@ from ml_video_metrics.models import convert_video_frame_metric_list_to_primitive
 
 
 class CLIBase(ABC):
+    """abstract class for CLI classes that implements methods to metric commands"""
+
     def metrics_builder(self, kinds, true, predicted):
         raise NotImplementedError()
 

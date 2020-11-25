@@ -16,6 +16,8 @@ WINDOW_SHAPE = (8, 8)
 
 
 class StructuralSimilarity(Metric, kind="structural-similarity"):
+    """Class that calculates the structural similarity metric"""
+
     def calculate(
         self,
         true_frames_matrix,

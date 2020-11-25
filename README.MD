@@ -99,3 +99,5 @@ The optional command parametes are:
 - `output`: This parameter expects an output folder. In this metric, since we can have the similarity-maps of the frames (that is an image file per frame), the results will be saved in a folder. The default value is `./out`.
 
 - `save-extra` or `no-save-extra`: If this flag is active, this command will save the similarity-maps in the output folder. Otherwise, the output will be only a JSON file inside the folder with the metrics values. The default value is `save-extra`.
+
+> In the `example` folder, there is an example application for the results collected with the ml-video-metrics.

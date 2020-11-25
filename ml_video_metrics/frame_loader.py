@@ -7,6 +7,11 @@ from PIL import Image
 
 class FrameLoader:
     def __init__(self, videos_folder):
+        """Class responsable to load the frames of a video based on the base path
+
+        Args:
+            videos_folder (str): Base path where are all folder to the videos frames
+        """
         self.videos_folder = videos_folder
 
     def get_all_frames_matrix(self, video_name):

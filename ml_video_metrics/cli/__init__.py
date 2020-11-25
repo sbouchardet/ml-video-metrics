@@ -1,4 +1,4 @@
-"""This module should contain the implemented functions in the Command Line Interface"""
+"""This module should contain the implemented functions in the Command Line Interface based on click module"""
 
 import click
 from os import path

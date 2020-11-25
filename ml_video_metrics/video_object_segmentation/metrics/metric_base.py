@@ -7,6 +7,8 @@ from ml_video_metrics.video_object_segmentation.mask import SegmentationMask
 
 
 class MasksMetric(Metric, ABC):
+    """This module implements an abstract class for metrics based on masks"""
+
     def get_true_positive(self, true_mask_matrix, predicted_mask_matrix):
         return np.count_nonzero(true_mask_matrix * predicted_mask_matrix)
 
